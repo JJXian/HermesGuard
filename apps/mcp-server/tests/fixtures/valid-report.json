@@ -1,0 +1,21 @@
+{
+  "executionId": "01JHERMESGUARDDEMO00000001",
+  "summary": "本次发现 7 个超时未发货订单，其中 2 个超过 48 小时。",
+  "severity": "CRITICAL",
+  "facts": [
+    {"label": "超时订单数", "value": 7, "source": "rule-engine"},
+    {"label": "超过 48 小时订单数", "value": 2, "source": "rule-engine"}
+  ],
+  "groups": [
+    {"dimension": "warehouse", "name": "上海仓", "count": 4},
+    {"dimension": "warehouse", "name": "杭州仓", "count": 3}
+  ],
+  "possibleCauses": [
+    {"text": "异常集中在上海仓，可能存在待出库积压。", "confidence": "medium"}
+  ],
+  "recommendedActions": [
+    {"priority": 1, "action": "核对上海仓待出库队列", "requiresApproval": false}
+  ],
+  "uncertainties": ["当前未接入仓库作业日志，具体原因需要人工确认。"]
+}
+

@@ -1,0 +1,2 @@
+"""HermesGuard MCP server package."""
+

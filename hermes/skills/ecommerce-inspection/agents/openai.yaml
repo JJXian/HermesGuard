@@ -1,0 +1,4 @@
+interface:
+  display_name: "E-commerce Inspection"
+  short_description: "Analyze deterministic e-commerce inspection results"
+  default_prompt: "Use $ecommerce-inspection to analyze an inspection execution and produce a grounded report."

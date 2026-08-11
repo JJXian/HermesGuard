@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermesguard.local/schemas/inspection-report-v1.json",
+  "title": "HermesGuard inspection report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "executionId",
+    "summary",
+    "severity",
+    "facts",
+    "groups",
+    "possibleCauses",
+    "recommendedActions",
+    "uncertainties"
+  ],
+  "properties": {
+    "executionId": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1, "maxLength": 500},
+    "severity": {"enum": ["INFO", "WARNING", "CRITICAL"]},
+    "facts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "value", "source"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "value": {"type": ["string", "number", "integer", "boolean"]},
+          "source": {"enum": ["rule-engine", "order-provider", "execution"]}
+        }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "name", "count"],
+        "properties": {
+          "dimension": {"type": "string", "minLength": 1},
+          "name": {"type": "string", "minLength": 1},
+          "count": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "possibleCauses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "confidence"],
+        "properties": {
+          "text": {"type": "string", "minLength": 1},
+          "confidence": {"enum": ["low", "medium", "high"]}
+        }
+      }
+    },
+    "recommendedActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["priority", "action", "requiresApproval"],
+        "properties": {
+          "priority": {"type": "integer", "minimum": 1},
+          "action": {"type": "string", "minLength": 1},
+          "requiresApproval": {"type": "boolean"}
+        }
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
+

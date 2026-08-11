@@ -1,0 +1,17 @@
+# Merge this block into ~/.hermes/config.yaml after Hermes is installed.
+mcp_servers:
+  hermesguard:
+    command: "uv"
+    args:
+      - "run"
+      - "--project"
+      - "/absolute/path/to/HermesGuard/apps/mcp-server"
+      - "mcp"
+      - "run"
+      - "/absolute/path/to/HermesGuard/apps/mcp-server/src/hermesguard_mcp/server.py"
+    timeout: 10
+    tools:
+      include: ["get_execution_result"]
+      prompts: false
+      resources: false
+

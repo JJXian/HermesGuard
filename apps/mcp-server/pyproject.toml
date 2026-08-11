@@ -1,0 +1,17 @@
+[project]
+name = "hermesguard-mcp"
+version = "0.1.0"
+description = "HermesGuard MCP proof-of-concept server"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "jsonschema>=4.25,<5",
+  "mcp[cli]>=2,<3",
+]
+
+[project.scripts]
+hermesguard-mcp = "hermesguard_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
