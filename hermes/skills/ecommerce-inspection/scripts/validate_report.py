@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a HermesGuard inspection report against the bundled JSON Schema."""
+"""使用随附的 JSON Schema 校验 HermesGuard 巡检报告。"""
 
 from __future__ import annotations
 

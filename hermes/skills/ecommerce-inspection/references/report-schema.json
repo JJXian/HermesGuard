@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://hermesguard.local/schemas/inspection-report-v1.json",
-  "title": "HermesGuard inspection report",
+  "title": "HermesGuard 巡检报告",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -76,4 +76,3 @@
     }
   }
 }
-

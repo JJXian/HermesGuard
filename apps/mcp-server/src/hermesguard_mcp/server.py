@@ -1,4 +1,4 @@
-"""Minimal, deterministic MCP server for the phase-0 technical proof."""
+"""用于阶段 0 技术验证的最小化、确定性 MCP 服务端。"""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ _DEMO_EXECUTION_ID = "01JHERMESGUARDDEMO00000001"
 
 
 def build_demo_execution(execution_id: str) -> dict[str, Any]:
-    """Build a redacted deterministic execution result for the phase-0 proof."""
+    """为阶段 0 验证构造经过脱敏的确定性执行结果。"""
     if execution_id != _DEMO_EXECUTION_ID:
         raise ValueError("EXECUTION_NOT_FOUND")
 
@@ -60,12 +60,12 @@ def build_demo_execution(execution_id: str) -> dict[str, Any]:
 
 @mcp.tool()
 def get_execution_result(execution_id: str) -> dict[str, Any]:
-    """Return one redacted deterministic inspection result; never modify business state."""
+    """返回一条经过脱敏的确定性巡检结果，且绝不修改业务状态。"""
     return build_demo_execution(execution_id)
 
 
 def main() -> None:
-    """Run the MCP server over standard input/output."""
+    """通过标准输入输出运行 MCP 服务。"""
     mcp.run(transport="stdio")
 
 

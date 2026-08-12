@@ -1,12 +1,11 @@
-# Anomaly severity
+# 异常严重级别
 
-Severity is assigned by the deterministic rule engine and must be preserved by the Agent.
+严重级别由确定性规则引擎判定，Agent 必须原样保留。
 
-| Level | Meaning |
+| 级别 | 含义 |
 |---|---|
-| `INFO` | Informational condition that does not require immediate intervention. |
-| `WARNING` | Confirmed anomaly that should be reviewed during normal operations. |
-| `CRITICAL` | Confirmed anomaly meeting the rule engine's urgent threshold. |
+| `INFO` | 提示性情况，无需立即干预。 |
+| `WARNING` | 已确认的异常，应在日常运营过程中检查。 |
+| `CRITICAL` | 已确认的异常，达到规则引擎定义的紧急阈值。 |
 
-The Agent may explain why the rule engine returned a level, but must not change it based on narrative judgment.
-
+Agent 可以解释规则引擎返回某一级别的原因，但不得根据主观叙述改变该级别。

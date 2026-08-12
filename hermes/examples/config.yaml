@@ -1,4 +1,4 @@
-# Merge this block into ~/.hermes/config.yaml after Hermes is installed.
+# 安装 Hermes 后，将此配置合并到 ~/.hermes/config.yaml。
 mcp_servers:
   hermesguard:
     command: "uv"
@@ -14,4 +14,3 @@ mcp_servers:
       include: ["get_execution_result"]
       prompts: false
       resources: false
-

@@ -1,2 +1,1 @@
-"""HermesGuard MCP server package."""
-
+"""HermesGuard MCP 服务端包。"""
