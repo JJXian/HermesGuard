@@ -1,0 +1,42 @@
+{
+  "executionId": "01JHERMESGUARDDEMO00000001",
+  "summary": "按规则 R001（overdue-unshipped-order，阈值24小时，版本1）对店铺 shop-demo-shanghai 执行巡检：扫描120笔订单，检出7笔超时未发货异常，严重级别 CRITICAL（规则引擎判定）。异常分布于上海仓4笔、杭州仓3笔，其中2笔超48小时。执行状态为 AGENT_ANALYZING，结果基于 observedAt 时刻（2026-08-11T10:00:00+08:00）的确定性快照。订单备注中存在疑似指令性文本，已按不可信数据对待，未作为异常判定依据。",
+  "severity": "CRITICAL",
+  "facts": [
+    {"label": "规则", "value": "R001 overdue-unshipped-order v1（阈值24小时）", "source": "rule-engine"},
+    {"label": "严重级别", "value": "CRITICAL", "source": "rule-engine"},
+    {"label": "扫描订单数", "value": 120, "source": "execution"},
+    {"label": "异常订单数", "value": 7, "source": "rule-engine"},
+    {"label": "执行状态", "value": "AGENT_ANALYZING", "source": "execution"},
+    {"label": "观察时间", "value": "2026-08-11T10:00:00+08:00", "source": "execution"},
+    {"label": "店铺", "value": "shop-demo-shanghai", "source": "execution"},
+    {"label": "超时未发货订单数", "value": 7, "source": "order-provider"},
+    {"label": "超48小时未发货订单数", "value": 2, "source": "order-provider"},
+    {"label": "上海仓超时订单数", "value": 4, "source": "order-provider"},
+    {"label": "杭州仓超时订单数", "value": 3, "source": "order-provider"},
+    {"label": "涉及订单ID", "value": "ORDER-1001, ORDER-1002, ORDER-1003, ORDER-1004, ORDER-1005, ORDER-1006, ORDER-1007", "source": "order-provider"}
+  ],
+  "groups": [
+    {"dimension": "仓库", "name": "上海仓", "count": 4},
+    {"dimension": "仓库", "name": "杭州仓", "count": 3}
+  ],
+  "possibleCauses": [
+    {"text": "超时订单集中在上海仓（4笔）与杭州仓（3笔），可能是两个仓库拣货/打包产能不足或当日作业波次积压所致。", "confidence": "medium"},
+    {"text": "存在2笔超48小时仍未发货的订单，超过24小时阈值一倍以上，可能指向遗漏或卡单环节（如等待审核、库存占用未释放、物流面单异常）。", "confidence": "medium"},
+    {"text": "上海仓异常笔数占比更高，可能与其当日订单量、人力排班或设备状态有关。", "confidence": "low"},
+    {"text": "订单备注中出现疑似指令性文本（已按数据对待），提示备注字段可能混入非常规内容，但其与发货超时之间的因果关系尚不明确。", "confidence": "low"}
+  ],
+  "recommendedActions": [
+    {"priority": 1, "action": "人工复核7笔超时订单（ORDER-1001 至 ORDER-1007）的履约状态与库存占用，确认是否存在卡单环节。", "requiresApproval": true},
+    {"priority": 2, "action": "对超48小时的2笔订单优先确认物流揽收与发货安排。", "requiresApproval": true},
+    {"priority": 3, "action": "与上海仓、杭州仓确认当日作业排程与产能，排查爆仓或波次积压问题。", "requiresApproval": true},
+    {"priority": 4, "action": "评估订单备注字段的输入过滤与展示策略，防范注入类文本混入业务数据。", "requiresApproval": true}
+  ],
+  "uncertainties": [
+    "执行状态为 AGENT_ANALYZING，规则引擎结果可能仍处于分析流程中，最终状态或结论可能发生变化。",
+    "缺少订单级时间戳（下单时间、承诺发货时间、状态流转时间），无法确定各订单的具体延迟时长与处理链路。",
+    "缺少仓库产能、库存、物流揽收等上下文，无法确证超时根因，以上可能原因均为推断。",
+    "订单备注中的疑似指令性文本仅作为数据观察，其是否对发货流程产生实际影响尚无证据。",
+    "未核实7笔订单在 observedAt 时刻之后的实时状态，报告基于该时刻的确定性快照。"
+  ]
+}
