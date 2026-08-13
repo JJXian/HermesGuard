@@ -6,9 +6,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import Redis
-from sqlalchemy.ext.asyncio import create_async_engine
 
 from hermesguard_server.config import Settings, get_settings
+from hermesguard_server.database import (
+    create_engine,
+    create_session_factory,
+)
 from hermesguard_server.health import probe_dependencies
 from hermesguard_server.health import router as health_router
 
@@ -19,7 +22,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        app.state.db_engine = create_async_engine(app_settings.database_url, pool_pre_ping=True)
+        app.state.db_engine = create_engine(app_settings)
+        app.state.db_session_factory = create_session_factory(
+            app.state.db_engine,
+        )
         app.state.redis = Redis.from_url(app_settings.redis_url, decode_responses=True)
         try:
             yield
