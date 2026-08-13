@@ -1,0 +1,21 @@
+[project]
+name = "hermesguard-server"
+version = "0.1.0"
+description = "HermesGuard API 与异步任务服务"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "aiomysql>=0.2,<1",
+  "celery[redis]>=5.5,<6",
+  "fastapi>=0.116,<1",
+  "pydantic-settings>=2.10,<3",
+  "redis>=6.4,<7",
+  "sqlalchemy[asyncio]>=2.0,<3",
+  "uvicorn[standard]>=0.35,<1",
+]
+
+[project.scripts]
+hermesguard-api = "hermesguard_server.main:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

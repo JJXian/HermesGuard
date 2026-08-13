@@ -75,13 +75,13 @@ Hermes → 调用 MCP → 获取模拟异常 → 生成报告 → Schema 校验�
 
 **任务**
 
-- [ ] 初始化 Python 3.12、uv workspace 和基础依赖。
-- [ ] 初始化 Vue 3、TypeScript、Vite 和 Element Plus。
-- [ ] 创建 FastAPI、Celery 和 MCP Server 进程入口。
-- [ ] 创建 MySQL、Redis 的 Docker Compose 配置。
-- [ ] 配置 Ruff、mypy、pytest、ESLint 和前端构建检查。
-- [ ] 添加 `.gitignore`、`.env.example` 和统一开发命令。
-- [ ] 添加最小 CI：静态检查、单元测试、前端构建。
+- [x] 初始化 Python 3.12、uv workspace 和基础依赖。
+- [x] 初始化 Vue 3、TypeScript、Vite 和 Element Plus。
+- [x] 创建 FastAPI、Celery 和 MCP Server 进程入口。
+- [x] 创建 MySQL、Redis 的 Docker Compose 配置。
+- [x] 配置 Ruff、mypy、pytest、ESLint 和前端构建检查。
+- [x] 添加 `.gitignore`、`.env.example` 和统一开发命令。
+- [x] 添加最小 CI：静态检查、单元测试、前端构建。
 
 **验收标准**
 

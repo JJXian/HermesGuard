@@ -11,4 +11,6 @@ htmlcov/
 dist/
 build/
 node_modules/
-
+.vite/
+apps/web/.env.local
+celerybeat-schedule*
